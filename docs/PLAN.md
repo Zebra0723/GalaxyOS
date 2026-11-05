@@ -209,6 +209,25 @@ lost when you switch (D5).
 
 ---
 
-## 7. Still to plan together
+## 7. The Mac
+
+| | |
+|---|---|
+| Model | MacBook Air M5, **13-inch** |
+| Memory | **16 GB** |
+| Storage | 494 GB, ~208 GB used (**~286 GB free**) |
+
+What this means:
+- **Storage is plenty.** The Galaxy world adds a few GB (shell, Galaxy apps,
+  its own files and caches).
+- **16 GB is fine but worth watching**, because both worlds stay running in
+  the background (D5). macOS compresses and swaps memory automatically, so
+  nothing breaks; the Galaxy shell itself should stay light (target under
+  300 MB). Galaxy Settings will show how much each world is using.
+- **13-inch screen:** the Galaxy bar and snap layouts should be compact by
+  default.
+
+---
+
+## 8. Still to plan together
 1. Each Galaxy app in detail (starting with the Phase 1 pieces)
-2. Mac details: MacBook size, RAM, free disk space
