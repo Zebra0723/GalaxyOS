@@ -21,6 +21,8 @@ Status: **Planning** · Last updated: 2026-11-05
 | D7 | **Look = fully customisable**, no fixed theme. | Default theme TBD |
 | D8 | **Switching: all methods** — hotkey, button in the Galaxy bar, choose at login, Galaxy is the default world. | |
 | D9 | **Switching never touches anything.** The other world is paused, not closed: every window, tab and unsaved thing stays exactly as left. | Uses macOS fast user switching (sessions keep running) |
+| D11 | **Galaxy bar sits at the top**, exactly where the macOS menu bar was. | |
+| D12 | **Galaxy Launcher does apps + files and actions** (e.g. "dark mode", "switch to Mac", "open my printing setup"). AI chat and clipboard history are *not* in the launcher. | |
 | D10 | **Windows: floating + snapping.** Windows overlap freely; snap to halves/quarters/etc. with keys or by dragging to an edge. | |
 
 ### Why not a separate Linux OS?
@@ -120,7 +122,7 @@ invisibly in the background.
 
 ## 6. Still to plan together
 2. Galaxy WM details: snap layouts, gestures, shortcuts (style agreed: floating + snapping)
-3. Galaxy Shell layout: bar, launcher, notifications
+3. Galaxy bar contents + notifications (position and launcher scope agreed)
 4. Default theme + how customisation works
 5. AI control rules + Space family integration (§5)
 6. Each Galaxy app in detail
