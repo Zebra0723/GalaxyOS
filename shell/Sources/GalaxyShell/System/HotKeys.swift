@@ -94,6 +94,13 @@ final class HotKeyCenter {
         }
     }
 
+    /// Releases every hotkey, so the keys go back to macOS and other apps.
+    func unregisterAll() {
+        for ref in refs { UnregisterEventHotKey(ref) }
+        refs.removeAll()
+        handlers.removeAll()
+    }
+
     private func fire(_ id: UInt32) {
         DispatchQueue.main.async { self.handlers[id]?() }
     }

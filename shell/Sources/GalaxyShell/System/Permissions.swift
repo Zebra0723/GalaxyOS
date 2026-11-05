@@ -13,11 +13,10 @@ enum Permissions {
 }
 
 enum FinderHider {
-    /// Finder draws the macOS desktop and is relaunched by macOS at login.
-    /// The setup script turns its desktop icons off and allows quitting it;
-    /// here we quit it once at startup. Opening a folder will still bring
-    /// it back until Galaxy Files exists (Phase 4).
-    static func quitFinderOnce() {
+    /// Finder draws the macOS desktop. While GalaxyOS is on, its desktop
+    /// icons are off and it may quit; this quits it. Opening a folder will
+    /// still bring it back until Galaxy Files exists (Phase 4).
+    static func quitFinder() {
         for app in NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.finder") {
             app.terminate()
         }

@@ -13,16 +13,17 @@ Status: **Planning** · Last updated: 2026-11-05
 ### The big picture
 | # | Decision |
 |---|---|
-| D1 | **Two fully separate worlds.** When GalaxyOS is in use there is *no* macOS UI. When macOS is in use there is *no* Galaxy. |
+| D1 | **Two operating systems that feel fully separate.** When GalaxyOS is in use there is *no* macOS UI. When macOS is in use there is *no* Galaxy (only the switch hotkey stays active, so you can get back). |
 | D2 | **Every app must work** in GalaxyOS: Chrome, Claude, ChatGPT, Bambu Studio, and anything else installed. |
-| D3 | **GalaxyOS is its own world on the Mac**: a dedicated "Galaxy" account whose entire visible layer (desktop, bar, launcher, windows, system apps) is replaced by Galaxy components. The normal macOS account stays untouched. macOS stays underneath only as the hardware engine and is never shown. |
+| D3 | **Same account, two OSes.** GalaxyOS runs on the owner's **main macOS account**, so every file, login and app is already there in both. Switching to GalaxyOS replaces the entire visible layer (Dock, menu bar, desktop, Spotlight, window management) with Galaxy's; switching back restores macOS exactly as it was. macOS keeps doing the hardware work underneath. *(Replaces the earlier "separate Galaxy account" plan.)* |
+| D3a | **Each OS keeps its own windows.** Apps used only in GalaxyOS hide when you switch to macOS and come back exactly where they were, and the other way round. Apps used in both OSes stay shared and visible in both. |
 
 ### Switching
 | # | Decision |
 |---|---|
-| D4 | **All switching methods**: hotkey, ⇄ button in the Galaxy bar (plus a small "Switch to Galaxy" item in the Mac world), and choosing at the login screen, with **Galaxy as the default world**. |
+| D4 | **Switching methods**: hotkey (works in both OSes) and the ⇄ button in the Galaxy bar. **GalaxyOS is the default** when the Mac starts. (A "choose at login" screen no longer applies with one account.) |
 | D4a | **Switch hotkey is set in Galaxy Settings** (placeholder default ⌃⌥Space until changed). |
-| D5 | **A switch never touches anything.** The other world is paused, not closed. Every window, tab and unsaved thing stays exactly as it was left (both sessions keep running via fast user switching). |
+| D5 | **A switch never closes or harms anything.** Apps are only hidden and shown, never quit, so every window, tab and unsaved thing stays exactly as it was. |
 
 ### Desktop
 | # | Decision |
@@ -81,11 +82,13 @@ keeps doing hardware work invisibly underneath.
 ```
 ┌───────────────────────── MacBook Air (M5) ─────────────────────────┐
 │                                                                    │
-│  🍎 World 1: "Mac" account      🌌 World 2: "Galaxy" account         │
+│            One account · switch hotkey flips between the two       │
+│                                                                    │
+│  🍎 macOS                        🌌 GalaxyOS                          │
 │  ─────────────────────────      ─────────────────────────────────  │
-│  Stock macOS, untouched         Galaxy Shell: bar, launcher,       │
-│  + one "Switch to Galaxy"         desktop, control panel,          │
-│    menu item                      notifications                    │
+│  Stock macOS look: Dock,        Galaxy Shell: bar, launcher,       │
+│  menu bar, Finder desktop,        desktop, control panel,          │
+│  Spotlight                        notifications                    │
 │                                 Galaxy WM: floating + snapping     │
 │                                 Galaxy apps: Mail, Messages,       │
 │                                   Files, Settings, Calendar+Notes, │
@@ -94,15 +97,20 @@ keeps doing hardware work invisibly underneath.
 │                                   ChatGPT, Bambu Studio, Spotify…  │
 │                                 Galaxy Link body "galaxyos"        │
 │                                                                    │
-│  Shared by both: installed apps, Wi-Fi, hardware                   │
-│  Separate per world: desktop, settings, files, logins              │
+│  Shared by both: files, logins, installed apps, Wi-Fi, hardware    │
+│  Per OS: the look, shortcuts, and which app windows are showing    │
 │                                                                    │
 │  macOS core underneath: drivers, power, networking (never shown)   │
 └────────────────────────────────────────────────────────────────────┘
 ```
 
-### How macOS gets hidden in the Galaxy world
-| macOS piece | In the Galaxy world |
+### How macOS gets hidden while GalaxyOS is on
+Switching to GalaxyOS first saves the current macOS look (Dock, Finder,
+menu bar, shortcut settings); switching back restores that saved copy. If
+Galaxy Shell crashes or restarts while GalaxyOS is on, it comes back in
+GalaxyOS and still holds the saved copy, so macOS can always be restored.
+
+| macOS piece | While GalaxyOS is on |
 |---|---|
 | 🍎 menu bar | Auto-hidden; the Galaxy bar is drawn in its place and shows the app's menus (D7) |
 | Dock | Hidden permanently |
@@ -118,7 +126,8 @@ keeps doing hardware work invisibly underneath.
 ### Known limits (accepted)
 - The Apple logo at power-on can't be changed.
 - Rare system prompts (privacy permissions, critical updates) are drawn by macOS.
-- The login / user-switch screen is macOS's.
+- The login screen is macOS's.
+- Switching takes a second or two (the Dock and Finder restart to change look).
 - During a live FaceTime call, the call window itself is FaceTime's.
 
 ### Tech stack (proposed)
@@ -126,7 +135,7 @@ keeps doing hardware work invisibly underneath.
   speed and full access to the macOS layer underneath.
 - **Accessibility API** for Galaxy WM: moving, resizing and snapping any app's
   windows, and reading app menus for the Galaxy bar.
-- **galaxy-osd**, a small local service for the Galaxy world. It exposes OS
+- **galaxy-osd**, a small local service for GalaxyOS. It exposes OS
   actions to the shell, the launcher and Galaxy Link, and enforces AI
   permissions.
 - **Theme engine**: one theme file (colours, fonts, radii, effects, layout)
@@ -153,17 +162,21 @@ rest run as they are, inside Galaxy windows.
 
 ---
 
-## 4. Switching between worlds
+## 4. Switching between GalaxyOS and macOS
 
 | Way | What happens |
 |---|---|
-| Hotkey (anywhere) | Jump to the other world |
-| ⇄ in the Galaxy bar | Jump to Mac |
-| "Switch to Galaxy" item in the Mac menu bar | Jump to Galaxy |
-| Login screen | Both worlds shown, Galaxy pre-selected |
+| Hotkey (in both OSes) | Flip to the other OS |
+| ⇄ in the Galaxy bar | Flip to macOS |
+| Starting the Mac | Comes up in GalaxyOS (setting: `startInGalaxy`) |
 
-Both worlds keep running in the background, so nothing closes and nothing is
-lost when you switch (D5).
+What a switch does:
+1. Hides the apps that were only used in the OS you're leaving (D3a).
+2. Changes the look: Galaxy bar/launcher/snapping on or off; Dock, menu bar,
+   desktop icons and Spotlight off or back on.
+3. Shows the apps that belong to the OS you're entering, exactly where they were.
+
+Nothing is ever quit or closed (D5).
 
 ---
 
@@ -201,7 +214,7 @@ lost when you switch (D5).
 
 | Phase | Name | What you get |
 |---|---|---|
-| 1 | **Shell** | Galaxy account set up and macOS UI hidden; Galaxy bar, launcher, floating + snapping WM, control panel, notifications, all switching methods. Clean light theme. **Usable every day.** |
+| 1 | **Shell** | Switching between GalaxyOS and macOS on the main account; Galaxy bar, launcher, floating + snapping WM, control panel, notifications, all switching methods. Clean light theme. **Usable every day.** |
 | 2 | **Settings + themes** | Galaxy Settings, the theme engine, customise everything |
 | 3 | **Galaxy Link** | galaxyos body, permissions + approvals, Nova/Nebula/Zenith/Comet in their spots, AI theme changes |
 | 4 | **Core apps** | Galaxy Files (with iCloud Drive + AirDrop), Galaxy Mail, Galaxy Messages |
@@ -210,10 +223,10 @@ lost when you switch (D5).
 ### Phase 1 steps
 | Step | What | Status |
 |---|---|---|
-| 1.1 | Setup/undo scripts; Galaxy bar (🌌 menu, app name, status, time, ⇄); launcher (apps, files, actions); key snapping; world switching | Written, not yet tested on the Mac (`shell/`) |
+| 1.1 | Install/uninstall; Galaxy bar (🌌 menu, app name, status, time, ⇄); launcher (apps, files, actions); key snapping; switching on one account with per-OS windows | Written, not yet tested on the Mac (`shell/`) |
 | 1.2 | App menus in the bar; drag-to-edge snapping + snap menu | Next |
 | 1.3 | Control panel (Wi-Fi, Bluetooth, sound, display…); Galaxy notifications | |
-| 1.4 | "Switch to Galaxy" item in the Mac world; polish from daily use | |
+| 1.4 | Polish from daily use | |
 
 ---
 
@@ -226,12 +239,11 @@ lost when you switch (D5).
 | Storage | 494 GB, ~208 GB used (**~286 GB free**) |
 
 What this means:
-- **Storage is plenty.** The Galaxy world adds a few GB (shell, Galaxy apps,
-  its own files and caches).
-- **16 GB is fine but worth watching**, because both worlds stay running in
-  the background (D5). macOS compresses and swaps memory automatically, so
-  nothing breaks; the Galaxy shell itself should stay light (target under
-  300 MB). Galaxy Settings will show how much each world is using.
+- **Storage is plenty.** GalaxyOS adds very little (shell, Galaxy apps,
+  caches).
+- **16 GB is fine.** With one account there is only one session, so nothing
+  runs twice. Hidden apps still use memory (as they would in macOS), and
+  the Galaxy shell itself should stay light (target under 300 MB).
 - **13-inch screen:** the Galaxy bar and snap layouts should be compact by
   default.
 

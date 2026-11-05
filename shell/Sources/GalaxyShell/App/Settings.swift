@@ -17,12 +17,13 @@ struct GalaxySettings: Codable {
     var barHeight: Double
     /// Gap between snapped windows and the screen edges, in points.
     var snapGap: Double
-    /// Short name of the macOS account to switch to. Empty = auto-detect.
-    var macWorldUser: String
+    /// Start in GalaxyOS when you log in (D4). false = start in macOS.
+    var startInGalaxy: Bool
     /// Quit Finder when Galaxy Shell starts.
     var hideFinder: Bool
     /// Action ID → key combo, e.g. "snap.leftHalf": "ctrl+opt+left".
-    /// Set a combo to "" to turn that shortcut off.
+    /// Set a combo to "" to turn that shortcut off. Only "switchWorld" stays
+    /// active while you're in macOS; the rest only work in GalaxyOS.
     var hotkeys: [String: String]
     /// The 🌌 Galaxy menu, top to bottom.
     var galaxyMenu: [MenuEntry]
@@ -30,7 +31,7 @@ struct GalaxySettings: Codable {
     static let defaults = GalaxySettings(
         barHeight: 30,
         snapGap: 8,
-        macWorldUser: "",
+        startInGalaxy: true,
         hideFinder: true,
         hotkeys: [
             "toggleLauncher": "cmd+space",
@@ -54,7 +55,7 @@ struct GalaxySettings: Codable {
         galaxyMenu: [
             MenuEntry(title: "Galaxy Settings…", action: "openSettings"),
             MenuEntry(title: "", action: "separator"),
-            MenuEntry(title: "Switch to Mac", action: "switchWorld"),
+            MenuEntry(title: "Switch to macOS", action: "switchWorld"),
             MenuEntry(title: "Lock Screen", action: "lockScreen"),
             MenuEntry(title: "", action: "separator"),
             MenuEntry(title: "Restart Galaxy Shell", action: "restartShell"),
@@ -75,7 +76,7 @@ extension GalaxySettings {
         let d = GalaxySettings.defaults
         barHeight = try c.decodeIfPresent(Double.self, forKey: .barHeight) ?? d.barHeight
         snapGap = try c.decodeIfPresent(Double.self, forKey: .snapGap) ?? d.snapGap
-        macWorldUser = try c.decodeIfPresent(String.self, forKey: .macWorldUser) ?? d.macWorldUser
+        startInGalaxy = try c.decodeIfPresent(Bool.self, forKey: .startInGalaxy) ?? d.startInGalaxy
         hideFinder = try c.decodeIfPresent(Bool.self, forKey: .hideFinder) ?? d.hideFinder
         let userHotkeys = try c.decodeIfPresent([String: String].self, forKey: .hotkeys) ?? [:]
         hotkeys = d.hotkeys.merging(userHotkeys) { _, mine in mine }

@@ -35,7 +35,7 @@ struct BarView: View {
                 Image(systemName: "arrow.left.arrow.right")
             }
             .buttonStyle(.plain)
-            .help("Switch to Mac")
+            .help("Switch to macOS")
         }
         .font(.system(size: Theme.barFontSize))
         .foregroundStyle(Theme.barText)

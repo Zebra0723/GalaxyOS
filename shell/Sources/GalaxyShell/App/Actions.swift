@@ -16,10 +16,10 @@ enum Actions {
         var list: [GalaxyAction] = [
             GalaxyAction(id: "toggleLauncher", title: "Galaxy Launcher", keywords: [],
                          showInLauncher: false) { LauncherController.shared.toggle() },
-            GalaxyAction(id: "switchWorld", title: "Switch to Mac", keywords: ["macos", "world", "user"],
-                         showInLauncher: true) { WorldSwitcher.switchToOtherWorld() },
+            GalaxyAction(id: "switchWorld", title: "Switch to macOS", keywords: ["mac", "macos", "switch"],
+                         showInLauncher: true) { ModeController.shared.toggle() },
             GalaxyAction(id: "lockScreen", title: "Lock Screen", keywords: ["lock"],
-                         showInLauncher: true) { WorldSwitcher.lockScreen() },
+                         showInLauncher: true) { ScreenLock.lock() },
             GalaxyAction(id: "toggleDarkMode", title: "Dark Mode / Light Mode", keywords: ["dark", "light", "appearance", "theme"],
                          showInLauncher: true) { runAppleScript(#"tell application "System Events" to tell appearance preferences to set dark mode to not dark mode"#) },
             GalaxyAction(id: "openSettings", title: "Galaxy Settings", keywords: ["settings", "preferences", "config"],

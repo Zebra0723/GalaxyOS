@@ -2,8 +2,8 @@ import AppKit
 import SwiftUI
 
 /// The Galaxy bar: a thin panel across the top of the main screen, exactly
-/// where the macOS menu bar was (D7). The setup script auto-hides the macOS
-/// menu bar; this panel sits above it.
+/// where the macOS menu bar was (D7). While GalaxyOS is on, the macOS menu
+/// bar is auto-hidden (MacChrome) and this panel sits above it.
 final class BarController {
     static let shared = BarController()
 
@@ -23,6 +23,11 @@ final class BarController {
     }
 
     func show() {
+        if let panel {
+            layout()
+            panel.orderFrontRegardless()
+            return
+        }
         let p = NSPanel(contentRect: .zero,
                         styleMask: [.borderless, .nonactivatingPanel],
                         backing: .buffered, defer: false)
@@ -38,6 +43,10 @@ final class BarController {
         panel = p
         layout()
         p.orderFrontRegardless()
+    }
+
+    func hide() {
+        panel?.orderOut(nil)
     }
 
     private func layout() {

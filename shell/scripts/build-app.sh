@@ -1,24 +1,18 @@
 #!/bin/bash
 # Builds "Galaxy Shell.app".
 #   scripts/build-app.sh            build into shell/build/
-#   scripts/build-app.sh --install  also install it for THIS account and start it
+#   scripts/build-app.sh --install  also install it on this (your main) account and start it
 #
-# --install only works in an account that was turned into the Galaxy world
-# with setup-galaxy-world.sh, so Galaxy never appears in the Mac world (D1).
+# GalaxyOS runs on your main account (D3). It starts in GalaxyOS by default;
+# press ctrl+opt+space to flip to macOS and back. scripts/uninstall.sh
+# removes it and puts macOS's look back.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-MARKER="$HOME/Library/Application Support/GalaxyOS/.galaxy-world"
 APP="build/Galaxy Shell.app"
 LABEL="com.galaxyos.shell"
 AGENT="$HOME/Library/LaunchAgents/$LABEL.plist"
 INSTALLED="$HOME/Applications/Galaxy Shell.app"
-
-if [[ "${1:-}" == "--install" && ! -f "$MARKER" ]]; then
-  echo "This account isn't the Galaxy world yet."
-  echo "Log into your Galaxy account and run scripts/setup-galaxy-world.sh first."
-  exit 1
-fi
 
 swift build -c release
 BIN="$(swift build -c release --show-bin-path)/GalaxyShell"
@@ -52,7 +46,8 @@ if [[ "${1:-}" == "--install" ]]; then
 PLIST
 
   launchctl bootstrap "gui/$UID" "$AGENT"
-  echo "Installed and started. Galaxy Shell now starts every time you log into this account."
+  echo "Installed and started. Galaxy Shell now starts every time you log in."
+  echo "Press ctrl+opt+space any time to flip between GalaxyOS and macOS."
   echo "Note: each new build is a new signature, so macOS may ask for Accessibility access again"
   echo "(System Settings > Privacy & Security > Accessibility)."
 fi
