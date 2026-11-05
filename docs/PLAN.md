@@ -21,12 +21,15 @@ Status: **Planning** · Last updated: 2026-11-05
 | # | Decision |
 |---|---|
 | D4 | **All switching methods**: hotkey, ⇄ button in the Galaxy bar (plus a small "Switch to Galaxy" item in the Mac world), and choosing at the login screen, with **Galaxy as the default world**. |
+| D4a | **Switch hotkey is set in Galaxy Settings** (placeholder default ⌃⌥Space until changed). |
 | D5 | **A switch never touches anything.** The other world is paused, not closed. Every window, tab and unsaved thing stays exactly as it was left (both sessions keep running via fast user switching). |
 
 ### Desktop
 | # | Decision |
 |---|---|
 | D6 | **Windows: floating + snapping.** Windows overlap freely and snap to halves/quarters/etc. with keys or by dragging to an edge. |
+| D6a | **Snap shapes: halves, quarters, thirds (incl. 2/3 + 1/3), full screen and centred.** |
+| D6b | **Snapping methods are all built** (drag to edge, key combos, snap menu on the window's top bar) and **chosen/remapped in Galaxy Settings**. |
 | D7 | **Galaxy bar at the top, laid out like the Apple menu bar but more bespoke**: 🌌 Galaxy menu (replaces 🍎) · app name + app menus · 🔗 Galaxy Link · ⏳ Zenith missions · approvals waiting · Wi-Fi / volume / battery · time · ⇄ switch to Mac. |
 | D8 | **Bluetooth and other controls** live in the Galaxy control panel (opened from the bar), not on the bar itself. |
 | D9 | **Galaxy Launcher** does **apps + files** and **actions** ("dark mode", "switch to Mac", "open my printing setup"). No AI chat or clipboard history in the launcher. |
@@ -207,6 +210,5 @@ lost when you switch (D5).
 ---
 
 ## 7. Still to plan together
-1. Galaxy WM details: snap layouts, shortcuts, the switching hotkey itself
-2. Each Galaxy app in detail (starting with the Phase 1 pieces)
-3. Mac details: MacBook size, RAM, free disk space
+1. Each Galaxy app in detail (starting with the Phase 1 pieces)
+2. Mac details: MacBook size, RAM, free disk space
