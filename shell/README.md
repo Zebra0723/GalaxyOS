@@ -78,7 +78,7 @@ editing. You only need to list what you change. For example:
 
 ```json
 {
-  "hotkeys": { "switchWorld": "fn+f2", "snap.centre": "" },
+  "hotkeys": { "switchWorld": "cmd+opt+g", "snap.centre": "" },
   "snapGap": 12,
   "galaxyMenu": [
     { "title": "Switch to Mac", "action": "switchWorld" },
