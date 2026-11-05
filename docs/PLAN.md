@@ -19,6 +19,9 @@ Status: **Planning** · Last updated: 2026-11-05
 | D5 | **AI ecosystem = the "Space family"**: NovaAI, OrbitAI, NebulaAI, CometAI, ZenithAI. | Repos still to be inspected |
 | D6 | **AIs can control the OS** (open apps, move windows, manage files, run commands), and there is a **dashboard** for them. | Safety rules TBD (§5) |
 | D7 | **Look = fully customisable**, no fixed theme. | Default theme TBD |
+| D8 | **Switching: all methods** — hotkey, button in the Galaxy bar, choose at login, Galaxy is the default world. | |
+| D9 | **Switching never touches anything.** The other world is paused, not closed: every window, tab and unsaved thing stays exactly as left. | Uses macOS fast user switching (sessions keep running) |
+| D10 | **Windows: floating + snapping.** Windows overlap freely; snap to halves/quarters/etc. with keys or by dragging to an edge. | |
 
 ### Why not a separate Linux OS?
 On an M5, macOS is currently the only system with drivers for the screen,
@@ -97,10 +100,14 @@ invisibly in the background.
 
 ---
 
-## 4. Switching between worlds
-Still to decide together. Candidates: hotkey that fast-user-switches,
-a "Switch to Mac" button in the Galaxy bar, choosing at login, or auto-login
-into Galaxy.
+## 4. Switching between worlds (agreed)
+- **Hotkey** anywhere → switch to the other world.
+- **Button** in the Galaxy bar ("Switch to Mac"); a small menu-bar item in the
+  Mac world ("Switch to Galaxy").
+- **Login screen**: both worlds shown, Galaxy pre-selected.
+- **Nothing is ever closed or harmed** by a switch: both sessions keep running
+  in the background (fast user switching), so apps, windows and unsaved work
+  are exactly as left.
 
 ---
 
@@ -112,8 +119,7 @@ into Galaxy.
 ---
 
 ## 6. Still to plan together
-1. Switching method (§4)
-2. Galaxy WM: how windows behave (tiling, floating, gestures, shortcuts)
+2. Galaxy WM details: snap layouts, gestures, shortcuts (style agreed: floating + snapping)
 3. Galaxy Shell layout: bar, launcher, notifications
 4. Default theme + how customisation works
 5. AI control rules + Space family integration (§5)
