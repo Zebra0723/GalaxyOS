@@ -16,7 +16,9 @@ Status: **Planning** · Last updated: 2026-11-05
 | D2 | **Every app must work** in GalaxyOS: Chrome, Claude, ChatGPT, Bambu Studio, and anything else installed. | Rules out a separate Linux OS (no M5 drivers; many apps missing) |
 | D3 | **Architecture:** GalaxyOS is its own world on the Mac: a dedicated "Galaxy" account whose entire visible layer (desktop, bar, launcher, windows, system apps) is replaced by Galaxy components. The normal macOS account stays untouched. | macOS stays underneath only as the hardware engine, never shown |
 | D4 | **Apple apps are replaced by Galaxy apps** (see §3). | |
-| D5 | **AI ecosystem = the "Space family"**: NovaAI, OrbitAI, NebulaAI, CometAI, ZenithAI. | Repos still to be inspected |
+| D5 | **AI ecosystem = the existing GalaxyAI family**: Comet (text/iMessage), Orbit (voice), Nova (sight, acts on screen), Nebula (touch/gestures), Zenith (time/commander), all coordinated by **Galaxy Link** (galaxyd + Galaxy Link.app, in NovaAI/galaxy). | GalaxyOS is the home the Galaxy lives in |
+| D13 | **Galaxy AI Hub = Galaxy Link**, built into GalaxyOS (bar icon, launcher actions, its own app). | No new hub |
+| D14 | **AI permissions start at "ask for everything"** and are loosened step by step, only when the owner says so. | Uses Galaxy Link Approvals |
 | D6 | **AIs can control the OS** (open apps, move windows, manage files, run commands), and there is a **dashboard** for them. | Safety rules TBD (§5) |
 | D7 | **Look = fully customisable**, no fixed theme. | Default theme TBD |
 | D8 | **Switching: all methods** — hotkey, button in the Galaxy bar, choose at login, Galaxy is the default world. | |
@@ -113,10 +115,33 @@ invisibly in the background.
 
 ---
 
-## 5. AI control: still to decide
-- What the AIs may do without asking vs. what needs a confirm.
-- How each Space family AI plugs in (needs a look at the repos).
-- Which AI is the "main" one in the shell.
+## 5. AI control
+
+### Permissions (agreed: D14)
+- **Level 0 (start):** every action needs a yes, answered in Galaxy Link
+  Approvals, by Nebula thumbs up/down, or by a Galaxy notification.
+- Later levels are unlocked one at a time by the owner, e.g. per action type
+  ("opening apps is always fine now") or per AI ("Nova can move windows freely").
+  Nothing gets more permission automatically.
+- Every action any AI takes is logged in Galaxy Link Activity.
+
+### How GalaxyOS plugs into Galaxy Link
+- GalaxyOS registers with galaxyd as a new body (`galaxyos`), advertising
+  powers such as `open_app`, `move_window`, `snap_window`, `open_file`,
+  `switch_world`, `set_setting`, `send_mail`.
+- Any member (Nova, Zenith…) asks for an OS action through galaxyd; GalaxyOS
+  checks the permission level, asks for approval if needed, then does it.
+- galaxyd stays local-only with its token, as today.
+
+### Proposal: where each AI lives in GalaxyOS (not yet agreed)
+| AI | Place in GalaxyOS |
+|---|---|
+| ✦ Nova | Main everyday AI: ⌃Space bar on top of the Galaxy desktop |
+| 🪐 Orbit | Greets you with the daily brief when you enter the Galaxy world |
+| 🖐️ Nebula | Gestures move/snap Galaxy windows; thumbs up/down for approvals |
+| ⏳ Zenith | Running missions shown as a small indicator in the Galaxy bar |
+| ☄️ Comet | Its messages show as Galaxy notifications |
+| 🔗 Galaxy Link | The AI Hub app + bar icon |
 
 ---
 
