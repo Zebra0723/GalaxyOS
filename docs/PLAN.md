@@ -207,6 +207,14 @@ lost when you switch (D5).
 | 4 | **Core apps** | Galaxy Files (with iCloud Drive + AirDrop), Galaxy Mail, Galaxy Messages |
 | 5 | **More apps** | Galaxy Calendar + Notes, Galaxy Photos, Galaxy Calls |
 
+### Phase 1 steps
+| Step | What | Status |
+|---|---|---|
+| 1.1 | Setup/undo scripts; Galaxy bar (🌌 menu, app name, status, time, ⇄); launcher (apps, files, actions); key snapping; world switching | Written, not yet tested on the Mac (`shell/`) |
+| 1.2 | App menus in the bar; drag-to-edge snapping + snap menu | Next |
+| 1.3 | Control panel (Wi-Fi, Bluetooth, sound, display…); Galaxy notifications | |
+| 1.4 | "Switch to Galaxy" item in the Mac world; polish from daily use | |
+
 ---
 
 ## 7. The Mac
