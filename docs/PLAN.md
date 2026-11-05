@@ -18,6 +18,7 @@ Status: **Planning** · Last updated: 2026-11-05
 | D4 | **Apple apps are replaced by Galaxy apps** (see §3). | |
 | D5 | **AI ecosystem = the existing GalaxyAI family**: Comet (text/iMessage), Orbit (voice), Nova (sight, acts on screen), Nebula (touch/gestures), Zenith (time/commander), all coordinated by **Galaxy Link** (galaxyd + Galaxy Link.app, in NovaAI/galaxy). | GalaxyOS is the home the Galaxy lives in |
 | D13 | **Galaxy AI Hub = Galaxy Link**, built into GalaxyOS (bar icon, launcher actions, its own app). | No new hub |
+| D16 | **Apple-only services are covered by hiding Apple's app and putting a Galaxy app in front**: Galaxy Messages (with Comet inside), Galaxy Photos, Galaxy Calls; iCloud Drive + AirDrop in Galaxy Files; Spotify for music. | §3 |
 | D15 | **Customisable: everything** — colours, wallpaper, fonts, sizes, shapes, effects, layout — through **Galaxy Settings** and **by asking an AI** ("make everything purple and glassy"). | |
 | D14 | **AI permissions start at "ask for everything"** and are loosened step by step, only when the owner says so. | Uses Galaxy Link Approvals |
 | D6 | **AIs can control the OS** (open apps, move windows, manage files, run commands), and there is a **dashboard** for them. | Safety rules TBD (§5) |
@@ -101,7 +102,20 @@ invisibly in the background.
 | **Galaxy Files** | Finder | Fast, keyboard-first, tags, AI search ("the STL I printed last week") |
 | **Galaxy AI Hub** | — (new) | Dashboard for the Space family: status, start/stop, logs, chat |
 | **Galaxy Calendar + Notes** | Calendar, Notes, Reminders | One app for time and thoughts |
-| **Galaxy Launcher** | Spotlight + Launchpad | One search box for apps, files, settings, commands, AIs |
+| **Galaxy Launcher** | Spotlight + Launchpad | One search box for apps + files and actions (D12) |
+| **Galaxy Messages** | Messages | Galaxy-style chats; Apple's Messages runs hidden and does the sending (real iMessage). Comet lives inside it too |
+| **Galaxy Photos** | Photos | Shows the iCloud photo library through Apple's photo framework |
+| **Galaxy Calls** | FaceTime / phone | Galaxy contacts, call buttons, incoming-call alerts; hands the call to FaceTime |
+
+### Apple services: how each is covered
+| Service | How |
+|---|---|
+| iMessage | Messages.app hidden in background; Galaxy Messages reads chat history and sends through it |
+| FaceTime / calls | Galaxy Calls starts/answers; the live call window itself is FaceTime's (cannot be redrawn) |
+| Photos | Galaxy Photos via PhotoKit (full library, edits sync to iCloud) |
+| iCloud Drive | Just a folder — shown natively in Galaxy Files |
+| AirDrop | "AirDrop" action in Galaxy Files/launcher; received files land in a Galaxy Files inbox |
+| Music | Spotify (normal app) + now-playing controls in the Galaxy bar |
 
 ---
 
