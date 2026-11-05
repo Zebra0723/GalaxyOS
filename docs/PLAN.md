@@ -18,6 +18,7 @@ Status: **Planning** · Last updated: 2026-11-05
 | D4 | **Apple apps are replaced by Galaxy apps** (see §3). | |
 | D5 | **AI ecosystem = the existing GalaxyAI family**: Comet (text/iMessage), Orbit (voice), Nova (sight, acts on screen), Nebula (touch/gestures), Zenith (time/commander), all coordinated by **Galaxy Link** (galaxyd + Galaxy Link.app, in NovaAI/galaxy). | GalaxyOS is the home the Galaxy lives in |
 | D13 | **Galaxy AI Hub = Galaxy Link**, built into GalaxyOS (bar icon, launcher actions, its own app). | No new hub |
+| D15 | **Customisable: everything** — colours, wallpaper, fonts, sizes, shapes, effects, layout — through **Galaxy Settings** and **by asking an AI** ("make everything purple and glassy"). | |
 | D14 | **AI permissions start at "ask for everything"** and are loosened step by step, only when the owner says so. | Uses Galaxy Link Approvals |
 | D6 | **AIs can control the OS** (open apps, move windows, manage files, run commands), and there is a **dashboard** for them. | Safety rules TBD (§5) |
 | D7 | **Look = fully customisable**, no fixed theme. | Default theme TBD |
@@ -133,12 +134,12 @@ invisibly in the background.
   checks the permission level, asks for approval if needed, then does it.
 - galaxyd stays local-only with its token, as today.
 
-### Proposal: where each AI lives in GalaxyOS (not yet agreed)
+### Where each AI lives in GalaxyOS (agreed)
 | AI | Place in GalaxyOS |
 |---|---|
 | ✦ Nova | Main everyday AI: ⌃Space bar on top of the Galaxy desktop |
-| 🪐 Orbit | Greets you with the daily brief when you enter the Galaxy world |
-| 🖐️ Nebula | Gestures move/snap Galaxy windows; thumbs up/down for approvals |
+| 🪐 Orbit | Voice, only when spoken to. **No daily brief** in GalaxyOS. |
+| 🖐️ Nebula | Watches for gestures **only while Fn+F1 is active**; gestures move/snap Galaxy windows; thumbs up/down for approvals |
 | ⏳ Zenith | Running missions shown as a small indicator in the Galaxy bar |
 | ☄️ Comet | Its messages show as Galaxy notifications |
 | 🔗 Galaxy Link | The AI Hub app + bar icon |
@@ -148,7 +149,7 @@ invisibly in the background.
 ## 6. Still to plan together
 2. Galaxy WM details: snap layouts, gestures, shortcuts (style agreed: floating + snapping)
 3. Galaxy bar contents + notifications (position and launcher scope agreed)
-4. Default theme + how customisation works
+4. Default theme (what customisation covers is agreed: D15)
 5. AI control rules + Space family integration (§5)
 6. Each Galaxy app in detail
 7. Build order / roadmap
