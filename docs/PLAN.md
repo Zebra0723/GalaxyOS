@@ -54,6 +54,11 @@ Status: **Planning** · Last updated: 2026-11-05
 | D19 | **AI permissions start at "ask for everything"** and loosen step by step, only when the owner says so. |
 | D20 | **Each AI has its own spot** (§5). Orbit gives **no daily brief**; Nebula watches for gestures **only while Fn+F1 is on**. |
 
+### Owner-configured
+| # | Decision |
+|---|---|
+| D22 | **The 🌌 Galaxy menu and the control panel are set up by the owner**, not pre-designed. Galaxy Settings must offer **lots and lots of options**: every item can be added, removed, reordered and restyled. |
+
 ### Build order
 | # | Decision |
 |---|---|
@@ -203,6 +208,5 @@ lost when you switch (D5).
 
 ## 7. Still to plan together
 1. Galaxy WM details: snap layouts, shortcuts, the switching hotkey itself
-2. What's inside the 🌌 Galaxy menu and the control panel
-3. Each Galaxy app in detail (starting with the Phase 1 pieces)
-4. Mac details: MacBook size, RAM, free disk space
+2. Each Galaxy app in detail (starting with the Phase 1 pieces)
+3. Mac details: MacBook size, RAM, free disk space
